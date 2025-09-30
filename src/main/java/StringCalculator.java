@@ -4,9 +4,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
 
+/**
+ * Spring Boot application entry point for String Calculator.
+ *
+ * Handles dynamic user input from console; delegates sum calculation
+ * to StringCalculatorUtility. Continues until 'exit' is typed.
+ *
+ * Prints results or descriptive error messages for invalid inputs.
+ *
+ * This class does not contain business logic; separation of concerns is maintained.
+ */
 @SpringBootApplication
 public class StringCalculator {
 
+    /**
+     * Main method - runs interactive command-line loop with users.
+     *
+     * @param args standard main args, not used here.
+     */
     public static void main(String[] args) {
         StringCalculatorUtility calculator = new StringCalculatorUtility();
         Scanner scanner = new Scanner(System.in);
