@@ -29,9 +29,10 @@ public class StringCalculator {
         while (true) {
             System.out.print("> ");
             String input = scanner.nextLine();
-            if ("exit".equalsIgnoreCase(input)) break;
+            String inputProcessed = input.replace("\\n", "\n");
+            if ("exit".equalsIgnoreCase(inputProcessed)) break;
             try {
-                System.out.println("Sum: " + calculator.add(input));
+                System.out.println("Sum: " + calculator.add(inputProcessed));
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
