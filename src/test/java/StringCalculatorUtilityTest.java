@@ -8,4 +8,9 @@ class StringCalculatorUtilityTest {
     void returnsZeroForEmptyInput() {
         Assertions.assertEquals(0, new StringCalculatorUtility().add(""));
     }
+
+    @Test
+    void returnsOneForSingleNumber() {
+        Assertions.assertEquals(1, new StringCalculatorUtility().add("1"));
+    }
 }
