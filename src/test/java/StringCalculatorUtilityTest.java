@@ -23,4 +23,10 @@ class StringCalculatorUtilityTest {
     void supportsManyNumbers() {
         Assertions.assertEquals(15, new StringCalculatorUtility().add("1,2,3,4,5"));
     }
+
+    @Test
+    void supportsCommaAndNewlineDelimiters() {
+        Assertions.assertEquals(6, new StringCalculatorUtility().add("1\n2,3"));
+    }
+
 }

@@ -10,10 +10,10 @@ public class StringCalculatorUtility {
      */
     public int add(String numbers) {
         if (numbers.isEmpty()) return 0;
-        String[] elements = numbers.split(",");
+        String[] elements = numbers.split(",|\\n");
         int sum = 0;
-        for (String el : elements) {
-            sum += Integer.parseInt(el);
+        for (String element : elements) {
+            sum += Integer.parseInt(element);
         }
         return sum;
     }
