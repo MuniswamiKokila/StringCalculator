@@ -34,4 +34,14 @@ class StringCalculatorUtilityTest {
         Assertions.assertEquals(3, new StringCalculatorUtility().add("//;\n1;2"));
     }
 
+    @Test
+    void throwsExceptionForNegatives() {
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () ->
+                new StringCalculatorUtility().add("-2,3,-5"));
+        Assertions.assertTrue(ex.getMessage().contains("negative numbers not allowed"));
+        Assertions.assertTrue(ex.getMessage().contains("-2"));
+        Assertions.assertTrue(ex.getMessage().contains("-5"));
+    }
+
+
 }

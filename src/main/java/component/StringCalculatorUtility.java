@@ -2,6 +2,8 @@ package component;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Component
@@ -20,8 +22,14 @@ public class StringCalculatorUtility {
         }
         String[] elements = numbers.split(delimiter);
         int sum = 0;
+        List<Integer> negatives = new ArrayList<>();
         for (String el : elements) {
-            sum += Integer.parseInt(el);
+            int num = Integer.parseInt(el);
+            if (num < 0) negatives.add(num);
+            else sum += num;
+        }
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("negative numbers not allowed " + negatives);
         }
         return sum;
     }
