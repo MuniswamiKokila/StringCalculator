@@ -2,6 +2,8 @@ package component;
 
 import org.springframework.stereotype.Component;
 
+import java.util.regex.Pattern;
+
 @Component
 public class StringCalculatorUtility {
     /**
@@ -10,10 +12,16 @@ public class StringCalculatorUtility {
      */
     public int add(String numbers) {
         if (numbers.isEmpty()) return 0;
-        String[] elements = numbers.split(",|\\n");
+        String delimiter = ",|\\n";
+        if (numbers.startsWith("//")) {
+            int idx = numbers.indexOf('\n');
+            delimiter = Pattern.quote(numbers.substring(2, idx));
+            numbers = numbers.substring(idx + 1);
+        }
+        String[] elements = numbers.split(delimiter);
         int sum = 0;
-        for (String element : elements) {
-            sum += Integer.parseInt(element);
+        for (String el : elements) {
+            sum += Integer.parseInt(el);
         }
         return sum;
     }

@@ -29,4 +29,9 @@ class StringCalculatorUtilityTest {
         Assertions.assertEquals(6, new StringCalculatorUtility().add("1\n2,3"));
     }
 
+    @Test
+    void supportsCustomDelimiter() {
+        Assertions.assertEquals(3, new StringCalculatorUtility().add("//;\n1;2"));
+    }
+
 }
