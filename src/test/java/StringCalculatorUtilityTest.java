@@ -13,4 +13,9 @@ class StringCalculatorUtilityTest {
     void returnsOneForSingleNumber() {
         Assertions.assertEquals(1, new StringCalculatorUtility().add("1"));
     }
+
+    @Test
+    void returnsSumForTwoNumbers() {
+        Assertions.assertEquals(3, new StringCalculatorUtility().add("1,2"));
+    }
 }

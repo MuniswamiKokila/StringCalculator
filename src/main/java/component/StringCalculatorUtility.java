@@ -10,7 +10,11 @@ public class StringCalculatorUtility {
      */
     public int add(String numbers) {
         if (numbers.isEmpty()) return 0;
-        else if (!numbers.contains(",")) return Integer.parseInt(numbers);
-        throw new UnsupportedOperationException();
+        String[] elements = numbers.split(",");
+        int sum = 0;
+        for (String el : elements) {
+            sum += Integer.parseInt(el);
+        }
+        return sum;
     }
 }
