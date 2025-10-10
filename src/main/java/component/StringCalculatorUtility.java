@@ -1,6 +1,7 @@
 package component;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +29,28 @@ public class StringCalculatorUtility {
         String delimiter = ",|\\n";
         if (numbers.startsWith("//")) {
             int idx = numbers.indexOf('\n');
-            delimiter = Pattern.quote(numbers.substring(2, idx));
+            String deli = numbers.substring(2, idx);
+            delimiter = Pattern.quote(deli);
             numbers = numbers.substring(idx + 1);
         }
         String[] elements = numbers.split(delimiter);
+        int total = 0;
         int sum = 0;
+        int mul = 1;
         List<Integer> negatives = new ArrayList<>();
         for (String element : elements) {
             try {
                 int num = Integer.parseInt(element);
-                if (num < 0) negatives.add(num);
-                else sum += num;
+                    if (num < 0) negatives.add(num);
+                    else {
+                        if(Pattern.quote("*").equals(delimiter)) {
+                            mul *= num;
+                            total = mul;
+                        } else {
+                            sum += num;
+                            total = sum;
+                        }
+                    }
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("Invalid input format");
             }
@@ -46,6 +58,6 @@ public class StringCalculatorUtility {
         if (!negatives.isEmpty()) {
             throw new IllegalArgumentException("negative numbers not allowed " + negatives);
         }
-        return sum;
+        return total;
     }
 }
