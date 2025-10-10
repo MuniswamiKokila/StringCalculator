@@ -43,5 +43,10 @@ class StringCalculatorUtilityTest {
         Assertions.assertTrue(ex.getMessage().contains("-5"));
     }
 
+    @Test
+    void supportCustomDelimiterWithStar() {
+        Assertions.assertEquals(3,new StringCalculatorUtility().add("//*\n1*3"));
+    }
+
 
 }
